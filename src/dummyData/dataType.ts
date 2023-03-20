@@ -15,7 +15,7 @@ export enum menuType {
 	package
 }
 
-export type menuDataType = (onlyTitleType[] | hasSubTitleType | colorType[] | packageType[] )
+export type menuDataType = (onlyTitleType[] | hasSubTitleType[] | colorType[] | packageType[] )
 
 export type onlyTitleType = string
 
@@ -30,6 +30,6 @@ export type packageType = {
 }
 
 export type hasSubTitleType = {
-	title:string[],
-	subTitle:string[]
+	title:string,
+	subTitle:string
 }

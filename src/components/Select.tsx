@@ -8,7 +8,7 @@ import Package from "./selectType/Package"
 import HasSubTitle from "./selectType/HasSubTitle"
 
 
-const Procedure = () => {
+const Select = () => {
 	const number = useSelector((state:RootState)=>state.number)
 	const dispatch = useDispatch()
 	const numberFilteredData = data.filter(item => item.number === number)[0]
@@ -39,4 +39,4 @@ const Procedure = () => {
 }
 
 
-export default Procedure
+export default Select

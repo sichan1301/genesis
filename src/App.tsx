@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from './store';
 import './App.css';
 import Result from './components/Result';
-import Procedure from './components/Procedure';
+import Select from './components/Select';
 
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
   
   return (
     <>
-      {number <=10 ?  <Procedure /> : <Result />}
+      {number <=10 ?  <Select /> : <Result />}
     </>
   );
 }
