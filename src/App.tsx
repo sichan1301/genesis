@@ -1,11 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
 import './App.css';
+import Result from './components/Result';
+import Procedure from './components/Procedure';
 
 function App() {
+
+  const number = useSelector((state:RootState)=>state.number)
+  
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      {number <=10 ?  <Procedure /> : <Result />}
+    </>
   );
 }
 

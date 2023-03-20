@@ -1,23 +1,35 @@
-
 export type dataType = {
-	type:selectType
 	category:string,
 	number:number,
 	title:string,
-	menu:menuType
+	menu:{
+		type:menuType,
+		menuData:menuDataType
+	}
 }
 
-type menuType = 
-string[] | 
-{
-	title:string,
-	subMenu?:string[],
-	option?:string[]
-} []
-
-export enum selectType {
-	justTitle,
+export enum menuType {
+	onlyTitleType,
+	hasSubTitleType,
 	color,
 	package
 }
 
+export type menuDataType = (onlyTitleType[] | hasSubTitleType | colorType[] | packageType[] )
+
+export type onlyTitleType = string
+
+export type colorType = {
+	title:string,
+	subMenu:string[],
+}
+
+export type packageType = {
+	title:string,
+	option:string[]
+}
+
+export type hasSubTitleType = {
+	title:string[],
+	subTitle:string[]
+}
