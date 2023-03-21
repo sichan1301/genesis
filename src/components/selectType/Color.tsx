@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { colorType, menuDataType } from "../../dummyData/dataType"
-import { RootState } from "../../store"
+import { HISTORY, RootState } from "../../store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,6 +9,8 @@ const Color = () => {
 	const number = useSelector((state:RootState)=>state.number)
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
+	const menuType = filteredData.menu.type
+	const dispatch = useDispatch()
 
 	return(
 		<>
@@ -16,7 +18,7 @@ const Color = () => {
 				<SelectBox key={uuidv4()}>
 					<Title>{item.title}</Title>
 					<SubMenuDiv>
-						{item.subMenu.map(item => <SubTitle key={uuidv4()}>{item}</SubTitle>)}
+						{item.subMenu.map(item => <SubTitle onClick ={()=>dispatch(HISTORY({menuType,number,text:item}))} key={uuidv4()}>{item}</SubTitle>)}
 					</SubMenuDiv>
 				</SelectBox>
 			))}

@@ -7,12 +7,12 @@ interface IState{
 	history: historyType
 }
 
-export type historyType = IOnlytitleHistory[] | IPackageHistory[] 
+export type historyType = IOnlytitleHistory[] | IColor[] | IHasSubTitleHistory[] |  IPackageHistory[] 
 
 export interface IOnlytitleHistory {
 	menuType:menuType.onlyTitleType,
 	number:number,
-	text:string,
+	text:string
 }
 
 export interface IPackageHistory {
@@ -27,6 +27,11 @@ export interface IHasSubTitleHistory {
 	item:hasSubTitleType
 }
 
+export interface IColor {
+	menuType:menuType.color,
+	number:number,
+	text:string
+}
 
 const genesis = createSlice({
 	name:"genesisReducer",
@@ -50,23 +55,32 @@ const genesis = createSlice({
 		HISTORY:(state:IState,action) => {
 			
 			const filteredIndex = state.history.findIndex(item => item === action.payload)  
-			
+			const numberFilteredIndex =  state.history.findIndex(item => item.number === action.payload.number)
+
 			switch(action.payload.menuType){
 				case menuType.onlyTitleType:         
-					if(filteredIndex !== -1){
+					if(numberFilteredIndex !== -1){
 						state.history.splice(filteredIndex,1,action.payload)
 					}else{
 						state.history.push(action.payload)
 					}
 					break;
+				
+				case menuType.color:
+					if(numberFilteredIndex !== -1){
+						state.history.splice(filteredIndex,1,action.payload)
+					}else{
+						state.history.push(action.payload)
+					}
+				break;
 
 				case menuType.hasSubTitleType:   
-					if(filteredIndex !== -1){
+					if(numberFilteredIndex !== -1){
 						state.history.splice(filteredIndex,1,action.payload)
 					}else{
 						state.history.push(action.payload)
 					}
-					break;
+				break;
 
 				case menuType.package:
 					if(action.payload.number === 9){  
@@ -79,6 +93,7 @@ const genesis = createSlice({
 
 					}
 				}
+				
 			}
 		}
 	}

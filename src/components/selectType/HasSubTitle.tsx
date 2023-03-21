@@ -20,7 +20,6 @@ const HasSubTitle = () => {
 	)
 }
 
-
 export default HasSubTitle
 
 const SelectBox = styled.div`
