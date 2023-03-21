@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { hasSubTitleType, menuDataType } from "../../dummyData/dataType"
-import { RootState } from "../../store"
+import { HISTORY, RootState } from "../../store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,11 +9,12 @@ const HasSubTitle = () => {
 	const number = useSelector((state:RootState)=>state.number)
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
-	
+	const menuType = filteredData.menu.type
+	const dispatch = useDispatch()
 	return(
 		<>
 			{
-				(menuData as Array<hasSubTitleType>).map(item => <SelectBox key={uuidv4()}><Title>{item.title}</Title> <SubTitle>{item.subTitle}</SubTitle></SelectBox>)
+				(menuData as Array<hasSubTitleType>).map(item => <SelectBox onClick ={()=>{dispatch(HISTORY({menuType,number,item}))}} key={uuidv4()}><Title>{item.title}</Title> <SubTitle>{item.subTitle}</SubTitle></SelectBox>)
 			}
 		</>        
 	)
