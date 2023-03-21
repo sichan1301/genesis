@@ -3,6 +3,7 @@ import { data } from "../../dummyData/data"
 import { colorType, menuDataType } from "../../dummyData/dataType"
 import { RootState } from "../../store"
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const Color = () => {
 	const number = useSelector((state:RootState)=>state.number)
@@ -15,7 +16,7 @@ const Color = () => {
 				<SelectBox>
 					<Title>{item.title}</Title>
 					<SubMenuDiv>
-						{item.subMenu.map(item => <SubTitle>{item}</SubTitle>)}
+						{item.subMenu.map(item => <SubTitle key={uuidv4()}>{item}</SubTitle>)}
 					</SubMenuDiv>
 				</SelectBox>
 			))}

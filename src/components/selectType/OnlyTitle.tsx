@@ -2,9 +2,9 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType,onlyTitleType} from "../../dummyData/dataType"
-import styled from 'styled-components';
-
 import { RootState } from "../../store"
+import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const OnlyTitle = () => {
 	const number = useSelector((state:RootState)=>state.number)
@@ -14,7 +14,7 @@ const OnlyTitle = () => {
 	return(
 		<>
 			{
-				(menuData as Array<onlyTitleType>).map(item => <Title>{item}</Title>)
+				(menuData as Array<onlyTitleType>).map(item => <Title key={uuidv4()}>{item}</Title>)
 			}
 		</>        
 	)

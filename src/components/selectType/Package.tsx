@@ -4,6 +4,7 @@ import { data } from "../../dummyData/data"
 import { menuDataType, packageType } from "../../dummyData/dataType"
 import { RootState } from "../../store"
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const Package = () => {
 	const number = useSelector((state:RootState)=>state.number)
@@ -14,7 +15,7 @@ const Package = () => {
 		<>
 			{
 				(menuData as Array<packageType>).map(item => (
-					<SelectBox>
+					<SelectBox key={uuidv4()}>
 						<Title>{item.title}</Title>
 						<OptionUl>
 							{item.option.map(item =><Option>{item}</Option>)}

@@ -3,6 +3,7 @@ import { data } from "../../dummyData/data"
 import { hasSubTitleType, menuDataType } from "../../dummyData/dataType"
 import { RootState } from "../../store"
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 
 const HasSubTitle = () => {
 	const number = useSelector((state:RootState)=>state.number)
@@ -12,7 +13,7 @@ const HasSubTitle = () => {
 	return(
 		<>
 			{
-				(menuData as Array<hasSubTitleType>).map(item => <SelectBox><Title>{item.title}</Title> <SubTitle>{item.subTitle}</SubTitle></SelectBox>)
+				(menuData as Array<hasSubTitleType>).map(item => <SelectBox key={uuidv4()}><Title>{item.title}</Title> <SubTitle>{item.subTitle}</SubTitle></SelectBox>)
 			}
 		</>        
 	)
