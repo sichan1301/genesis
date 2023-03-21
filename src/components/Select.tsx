@@ -6,6 +6,7 @@ import JustTitle from "./selectType/OnlyTitle"
 import Color from "./selectType/Color"
 import Package from "./selectType/Package"
 import HasSubTitle from "./selectType/HasSubTitle"
+import { useCallback } from "react"
 
 
 const Select = () => {
@@ -13,7 +14,7 @@ const Select = () => {
 	const dispatch = useDispatch()
 	const numberFilteredData = data.filter(item => item.number === number)[0]
 
-	const filterDataType = () =>{
+	const filterDataType = useCallback(() =>{
 		switch(numberFilteredData.menu.type){
 			case menuType.onlyTitleType:
 				return <JustTitle />
@@ -26,7 +27,7 @@ const Select = () => {
 			default:
 				break;	
 		}
-	}
+	},[number])
 
 	return(
 		<>
