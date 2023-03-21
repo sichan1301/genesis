@@ -6,16 +6,18 @@ import JustTitle from "./selectType/OnlyTitle"
 import Color from "./selectType/Color"
 import Package from "./selectType/Package"
 import HasSubTitle from "./selectType/HasSubTitle"
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 
 
 const Select = () => {
 	const number = useSelector((state:RootState)=>state.number)
 	const dispatch = useDispatch()
 	const numberFilteredData = data.filter(item => item.number === number)[0]
-
+	const nextButton = number===10 ? "견적보기": "다음" 
+	const dataType = numberFilteredData.menu.type
+	
 	const filterDataType = useCallback(() =>{
-		switch(numberFilteredData.menu.type){
+		switch(dataType){
 			case menuType.onlyTitleType:
 				return <JustTitle />
 			case menuType.hasSubTitleType:
@@ -27,14 +29,14 @@ const Select = () => {
 			default:
 				break;	
 		}
-	},[number])
+	},[dataType])
 
 	return(
 		<>
 			<p>{number}.{numberFilteredData.title}</p>
 			{filterDataType()}
 			<button onClick = {() => dispatch(PREV())}>이전</button>
-			<button onClick = {() => dispatch(NEXT())}>다음</button>
+			<button onClick = {() => dispatch(NEXT())}>{nextButton}</button>
 		</>
 	)
 }

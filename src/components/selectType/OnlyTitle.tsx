@@ -1,20 +1,23 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType,onlyTitleType} from "../../dummyData/dataType"
-import styled from 'styled-components';
-
 import { RootState } from "../../store"
+import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import { HISTORY } from "../../store"
 
 const OnlyTitle = () => {
 	const number = useSelector((state:RootState)=>state.number)
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
-
+	const menuType = filteredData.menu.type
+	const dispatch = useDispatch()
+	
 	return(
 		<>
 			{
-				(menuData as Array<onlyTitleType>).map(item => <Title>{item}</Title>)
+				(menuData as Array<onlyTitleType>).map(item => <Title onClick ={()=>{dispatch(HISTORY({menuType,number,text:item}))}} key={uuidv4()}>{item}</Title>)
 			}
 		</>        
 	)
