@@ -5,8 +5,10 @@ import { menuType } from "../../dummyData/dataType";
 
 
 const ColorResult = () => {
-  const history = useSelector((state:RootState)=>state.history)
-	const filteredHistory = (history as Array<IColorHistory>).filter(item => item.menuType === menuType.color)
+  const history = useSelector((state:RootState) => state.history)
+  const tenHistory = useSelector((state:RootState) => state.tenHistory)
+  const newHistory = history.concat(tenHistory)
+	const filteredHistory = (newHistory as Array<IColorHistory>).filter(item => item.menuType === menuType.color)
   return(
     <>
       {

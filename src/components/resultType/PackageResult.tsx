@@ -7,15 +7,19 @@ import { useEffect } from "react";
 
 const PackageResult = () => {
   const history = useSelector((state:RootState) => state.history)
-  const filteredHistory = (history as Array<IPackageHistory>).filter(item =>item.menuType === menuType.package)
+  const tenHistory = useSelector((state:RootState) => state.tenHistory)
+  const newHistory = history.concat(tenHistory)
+  console.log(newHistory);
+  
+  const filteredHistory = (newHistory as Array<IPackageHistory>).filter(item =>item.menuType === menuType.package)
 
   return(
     <>
       {
 				filteredHistory.map(item =><div key={uuidv4()}> 
-          <p>{item.number}.{item.item.title}</p>
+          <p>{item.number}.{item.newItem.title}</p>
             <ul>
-              {item.item.option.map(item => <li key={uuidv4()}>{item}</li>)}
+              {item.newItem.option.map(item => <li key={uuidv4()}>{item}</li>)}
             </ul>
           </div>
         )

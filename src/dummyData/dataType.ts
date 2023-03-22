@@ -26,7 +26,8 @@ export type colorType = {
 
 export type packageType = {
 	title:string,
-	option:string[]
+	option:string[],
+	selected?:boolean		
 }
 
 export type hasSubTitleType = {
