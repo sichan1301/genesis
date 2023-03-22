@@ -35,7 +35,7 @@ export interface IColorHistory {
 
 const genesis = createSlice({
 	name:"genesisReducer",
-
+	
 	initialState:{
 		number:1,
 		history:[]
@@ -53,24 +53,29 @@ const genesis = createSlice({
 		},
 
 		HISTORY:(state:IState,action) => {
-
+			const numberFilteredIndex = state.history.findIndex(item => item.number === action.payload.number)
+			const titleFilteredIndex = (state.history as Array<IPackageHistory>).findIndex((item:IPackageHistory) => item?.item?.title === action.payload.item.title)
+			
 			if(action.payload.number !== 10){                       
-				const numberFilteredIndex = state.history.findIndex(item => item.number === action.payload.number)
 				if(numberFilteredIndex !== -1){
 					state.history.splice(numberFilteredIndex,1,action.payload)
 				}else{
 					state.history.push(action.payload)
 				}
+			}else{
+			
+				// if(numberFilteredIndex !== -1){
+				// 	if((state.history as Array<IPackageHistory>).filter((item:IPackageHistory)=> item.item?.title === action.payload.item.title).length !== 0){
+				// 		(state.history as Array<IPackageHistory>).splice(titleFilteredIndex,1)
+				// 	}else{
+				// 		state.history.push(action.payload)
+				// 	}
+				// }else{
+				// 	state.history.push(action.payload)
+				// }
+
 			}
-			else{
-				const tenFilteredHistory =  (state.history as Array<IPackageHistory>).filter(item => item.number === 10)
-				if(tenFilteredHistory.length === 0){
-					state.history.push(action.payload)
-					// const itemTitleFilteredIndex = tenFilteredHistory.filter(item=>item.item.title !== action.payload.item.title)
-				}else{
-					(state.history as Array<IPackageHistory>).filter(item=> item.item.title !== action.payload.item.title)
-				}
-			}
+
 				state.history.sort((a,b)=> a.number > b.number ? 1 : -1 )
 			}
 	}

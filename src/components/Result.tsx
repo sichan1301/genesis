@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { menuType } from "../dummyData/dataType"
+import { historyType } from "../store"
 import {  PREV, RootState } from "../store"
 import ColorResult from "./resultType/ColorResult"
 import HasSubTitleResult from "./resultType/HasSubTitleResult"
@@ -11,33 +12,25 @@ const Result = () => {
 	const history = useSelector((state:RootState) => state.history)
 	const number = useSelector((state:RootState) => state.number)
 	const dispatch = useDispatch()
-
-	// const filteredHistory = () => { 
-	// 	history.map(item => {
-	// 		switch(item.menuType){
-	// 			case IOnlyTitleHistory:
-	// 				return <OnlyTitleResult />
-	// 				break;
-	// 			case IColorHistory:
-	// 				return <ColorResult />
-	// 				break;
-	// 			case IHasSubTitleHistory:
-	// 				return <HasSubTitleResult />
-	// 				break;
-	// 			case IPackageHistory:
-	// 				return <PackageResult />
-	// 				break;
-	// 			default:
-	// 				break;	
-	// 		}
-	// 	})
-	// }
+	console.log(history);
 
 	return (
 		<>
 			<h1>result</h1>
+			
 			{/* {
-				filteredHistory()
+				history.map((item:any) => {
+					switch(item.menuType){
+						case menuType.onlyTitleType:
+							return <OnlyTitleResult />
+						case menuType.color:
+							return <ColorResult />
+						case menuType.hasSubTitleType:
+							return <HasSubTitleResult />
+						case menuType.package:
+							return <PackageResult />
+					}
+				})
 			} */}
 
 			<OnlyTitleResult />
