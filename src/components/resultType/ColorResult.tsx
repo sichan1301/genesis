@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux"
-import { IColor, RootState } from "../../store"
+import { IColorHistory, RootState } from "../../store"
 import { v4 as uuidv4 } from 'uuid';
 import { menuType } from "../../dummyData/dataType";
 
 
 const ColorResult = () => {
   const history = useSelector((state:RootState)=>state.history)
-	const filteredHistory = (history as Array<IColor>).filter(item => item.menuType === menuType.color)
+	const filteredHistory = (history as Array<IColorHistory>).filter(item => item.menuType === menuType.color)
   return(
     <>
       {

@@ -7,9 +7,9 @@ interface IState{
 	history: historyType
 }
 
-export type historyType = IOnlytitleHistory[] | IColor[] | IHasSubTitleHistory[] |  IPackageHistory[] 
+export type historyType = IOnlyTitleHistory[] | IColorHistory[] | IHasSubTitleHistory[] |  IPackageHistory[] 
 
-export interface IOnlytitleHistory {
+export interface IOnlyTitleHistory {
 	menuType:menuType.onlyTitleType,
 	number:number,
 	text:string
@@ -27,7 +27,7 @@ export interface IHasSubTitleHistory {
 	item:hasSubTitleType
 }
 
-export interface IColor {
+export interface IColorHistory {
 	menuType:menuType.color,
 	number:number,
 	text:string
@@ -53,51 +53,28 @@ const genesis = createSlice({
 		},
 
 		HISTORY:(state:IState,action) => {
-			
-			const filteredIndex = state.history.findIndex(item => item === action.payload)  
-			const numberFilteredIndex =  state.history.findIndex(item => item.number === action.payload.number)
 
-			switch(action.payload.menuType){
-				case menuType.onlyTitleType:         
-					if(numberFilteredIndex !== -1){
-						state.history.splice(filteredIndex,1,action.payload)
-					}else{
-						state.history.push(action.payload)
-					}
-					break;
-				
-				case menuType.color:
-					if(numberFilteredIndex !== -1){
-						state.history.splice(filteredIndex,1,action.payload)
-					}else{
-						state.history.push(action.payload)
-					}
-				break;
-
-				case menuType.hasSubTitleType:   
-					if(numberFilteredIndex !== -1){
-						state.history.splice(filteredIndex,1,action.payload)
-					}else{
-						state.history.push(action.payload)
-					}
-				break;
-
-				case menuType.package:
-					if(action.payload.number === 9){  
-						if(filteredIndex !== -1){
-							state.history.splice(filteredIndex,1,action.payload)
-						}else{
-							state.history.push(action.payload)
-						}
-					}else{    // 10번일 때 중복 허용
-
-					}
+			if(action.payload.number !== 10){                       
+				const numberFilteredIndex = state.history.findIndex(item => item.number === action.payload.number)
+				if(numberFilteredIndex !== -1){
+					state.history.splice(numberFilteredIndex,1,action.payload)
+				}else{
+					state.history.push(action.payload)
 				}
-				
 			}
-		}
+			else{
+				const tenFilteredHistory =  (state.history as Array<IPackageHistory>).filter(item => item.number === 10)
+				if(tenFilteredHistory.length === 0){
+					state.history.push(action.payload)
+					// const itemTitleFilteredIndex = tenFilteredHistory.filter(item=>item.item.title !== action.payload.item.title)
+				}else{
+					(state.history as Array<IPackageHistory>).filter(item=> item.item.title !== action.payload.item.title)
+				}
+			}
+				state.history.sort((a,b)=> a.number > b.number ? 1 : -1 )
+			}
 	}
-)
+})
 
 
 export const store = configureStore({
@@ -105,7 +82,5 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>;
-
 export const {NEXT,PREV,HISTORY} = genesis.actions
-
 export default genesis

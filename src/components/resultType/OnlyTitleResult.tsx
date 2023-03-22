@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import { IOnlytitleHistory, RootState } from "../../store";
+import { IOnlyTitleHistory, RootState } from "../../store";
 import { v4 as uuidv4 } from 'uuid';
 import { menuType } from "../../dummyData/dataType";
 
 const OnlyTitleResult = () => {
 	const history = useSelector((state:RootState)=>state.history)
-	const filteredHistory = (history as Array<IOnlytitleHistory>).filter(item => item.menuType === menuType.onlyTitleType)
+	const filteredHistory = (history as Array<IOnlyTitleHistory>).filter(item => item.menuType === menuType.onlyTitleType)
 
   return(
     <>
