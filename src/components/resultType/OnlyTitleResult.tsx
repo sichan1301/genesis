@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { IOnlyTitleHistory } from "../store/stateType";
+import { RootState } from "../../store/store";
+import { IOnlyTitleHistory } from "../../store/stateType";
 import { v4 as uuidv4 } from 'uuid';
 import { menuType } from "../../dummyData/dataType";
 

@@ -2,8 +2,8 @@ import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { hasSubTitleType, menuType } from "../../dummyData/dataType"
 import { v4 as uuidv4 } from 'uuid';
-import { RootState } from "../store/store"
-import { IHasSubTitleHistory } from "../store/stateType";
+import { RootState } from "../../store/store"
+import { IHasSubTitleHistory } from "../../store/stateType";
 
 const HasSubTitleResult = () => {
   const history = useSelector((state:RootState) => state.history)

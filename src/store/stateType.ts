@@ -1,5 +1,5 @@
-import { menuType } from "../../dummyData/dataType"
-import { onlyTitleType,recommendType,optionType,hasSubTitleType,colorType } from "../../dummyData/dataType"
+import { menuType } from "../dummyData/dataType"
+import { onlyTitleType,recommendType,optionType,hasSubTitleType,colorType } from "../dummyData/dataType"
 
 
 export interface IState{

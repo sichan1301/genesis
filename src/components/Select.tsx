@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { RootState,NEXT,PREV } from "./store/store"
+import { RootState,NEXT,PREV } from "../store/store"
 import { data } from "../dummyData/data"
 import { menuType } from "../dummyData/dataType"
 import JustTitle from "./selectType/OnlyTitle"
