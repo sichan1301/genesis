@@ -12,7 +12,7 @@ import RecommendResult from "./resultType/RecommendResult"
 const Result = () => {
 	const history = useSelector((state:RootState) => state.history)
 	const dispatch = useDispatch()
-	
+	console.log(history)
 	return (
 		<>
 			<h1>result</h1>

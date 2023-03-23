@@ -8,13 +8,27 @@ export interface IState{
 	tenHistory:IOptionHistory[]
 }
 
-export type historyType = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory | IOptionHistory)
+export type historyType = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory)
 
 export interface IOnlyTitleHistory {
 	menuType:menuType.onlyTitleType,
 	title:string,
 	number:number,
 	text:onlyTitleType
+}
+
+export interface IColorHistory {
+	menuType:menuType.color,
+	title:string,
+	number:number,
+	item:string //subMenu
+}
+
+export interface IHasSubTitleHistory {
+	menuType:menuType.hasSubTitleType,
+	title:string,
+	number:number,
+	item:hasSubTitleType
 }
 
 export interface IRecommendHistory {
@@ -29,18 +43,4 @@ export interface IOptionHistory {
 	title:string,
 	number:number,
 	newItem:optionType
-}
-
-export interface IHasSubTitleHistory {
-	menuType:menuType.hasSubTitleType,
-	title:string,
-	number:number,
-	item:hasSubTitleType
-}
-
-export interface IColorHistory {
-	menuType:menuType.color,
-	title:string,
-	number:number,
-	item:string[] //subMenu
 }
