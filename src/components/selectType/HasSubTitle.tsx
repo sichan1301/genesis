@@ -14,7 +14,11 @@ const HasSubTitle = () => {
 	return(
 		<>
 			{
-				(menuData as Array<hasSubTitleType>).map(item => <SelectBox onClick ={()=>{dispatch(HISTORY({menuType,number,item}))}} key={uuidv4()}><Title>{item.title}</Title> <SubTitle>{item.subTitle}</SubTitle></SelectBox>)
+				(menuData as Array<hasSubTitleType>).map(item => 
+					<SelectBox onClick ={()=>{dispatch(HISTORY({menuType,number,item}))}} key={uuidv4()}>
+						<Title>{item.title}</Title> 
+						<SubTitle>{item.subTitle}</SubTitle>
+					</SelectBox>)
 			}
 		</>        
 	)

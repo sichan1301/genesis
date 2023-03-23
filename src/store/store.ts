@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { hasSubTitleType, menuType, optionType,recommendType,colorType } from "../dummyData/dataType";
+import { optionType } from "../dummyData/dataType";
 import { IOptionHistory, IState } from "./stateType";
 
 

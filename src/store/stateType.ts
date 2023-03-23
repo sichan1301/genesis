@@ -4,12 +4,12 @@ import { onlyTitleType,recommendType,optionType,hasSubTitleType,colorType } from
 
 export interface IState{
 	number:number,
-	history: historyType,
+	history: historyType[],
 	tenHistory:IOptionHistory[]
 }
 
-export type historyType = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory | IOptionHistory)[]
-export type historyTypee = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory | IOptionHistory)
+export type historyType = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory | IOptionHistory)
+
 
 export interface IOnlyTitleHistory {
 	menuType:menuType.onlyTitleType,
@@ -38,5 +38,5 @@ export interface IHasSubTitleHistory {
 export interface IColorHistory {
 	menuType:menuType.color,
 	number:number,
-	item:colorType
+	item:string[] //subMenu
 }

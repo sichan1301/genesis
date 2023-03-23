@@ -6,9 +6,7 @@ import { menuType } from "../../dummyData/dataType";
 
 const OnlyTitleResult = () => {
 	const history = useSelector((state:RootState) => state.history)
-  const tenHistory = useSelector((state:RootState) => state.tenHistory)
-  const newHistory = history.concat(tenHistory)
-	const filteredHistory = (newHistory as Array<IOnlyTitleHistory>).filter(item => item.menuType === menuType.onlyTitleType)
+	const filteredHistory = (history as Array<IOnlyTitleHistory>).filter(item => item.menuType === menuType.onlyTitleType)
 
   return(
     <>

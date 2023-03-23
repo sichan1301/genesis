@@ -17,7 +17,8 @@ const OnlyTitle = () => {
 	return(
 		<>
 			{
-				(menuData as Array<onlyTitleType>).map(item => <Title onClick ={()=>{dispatch(HISTORY({menuType,number,text:item}))}} key={uuidv4()}>{item}</Title>)
+				(menuData as Array<onlyTitleType>).map(item => 
+					<Title onClick ={()=>{dispatch(HISTORY({menuType,number,text:item}))}} key={uuidv4()}>{item}</Title>)
 			}
 		</>        
 	)

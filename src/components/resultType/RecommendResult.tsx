@@ -7,10 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const RecommendResult = () => {
   const history = useSelector((state:RootState) => state.history)
-  const tenHistory = useSelector((state:RootState) => state.tenHistory)
-  const newHistory = history.concat(tenHistory)
-  
-  const filteredHistory = (newHistory as Array<IRecommendHistory>).filter(item =>item.menuType === menuType.recommend)
+  const filteredHistory = (history as Array<IRecommendHistory>).filter(item =>item.menuType === menuType.recommend)
 
   return(
     <>
