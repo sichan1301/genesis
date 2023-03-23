@@ -11,12 +11,13 @@ import RecommendResult from "./resultType/RecommendResult"
 
 const Result = () => {
 	const history = useSelector((state:RootState) => state.history)
+	const recommendHistory = history.filter(item => item.menuType === menuType.recommend)[0]
 	const dispatch = useDispatch()
 	console.log(history)
 	return (
 		<>
 			<h1>result</h1>
-			{
+			{recommendHistory ?
 				history.map((item:historyType) => {		
 					switch(item.menuType){
 						case menuType.onlyTitleType:
@@ -29,11 +30,12 @@ const Result = () => {
 							return <RecommendResult item={item}/>
 						default:
 							break;
-						}
-				})
+					}
+				}):<RecommendResult />
 			}
-			<OptionResult />
 
+			
+			<OptionResult />
 			<button onClick = {() => dispatch(PREV())}>이전</button>
 		</>
 	)
