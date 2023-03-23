@@ -8,7 +8,6 @@ const RecommendResult = () => {
   const history = useSelector((state:RootState) => state.history)
   const tenHistory = useSelector((state:RootState) => state.tenHistory)
   const newHistory = history.concat(tenHistory)
-  console.log(newHistory);
   
   const filteredHistory = (newHistory as Array<IRecommendHistory>).filter(item =>item.menuType === menuType.recommend)
 
@@ -16,7 +15,7 @@ const RecommendResult = () => {
     <>
       {
 				filteredHistory.map(item =><div key={uuidv4()}> 
-          <p>{item.number}.{item.item.title}</p>
+          <p>{item.item.title}</p>
             <ul>
               {item.item.option.map(item => <li key={uuidv4()}>{item}</li>)}
             </ul>

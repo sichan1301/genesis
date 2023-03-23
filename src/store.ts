@@ -8,7 +8,7 @@ interface IState{
 	tenHistory:IOptionHistory[]
 }
 
-export type historyType = IOnlyTitleHistory[] | IColorHistory[] | IHasSubTitleHistory[] |  IRecommendHistory[] | IOptionHistory[]
+export type historyType = (IOnlyTitleHistory | IColorHistory | IHasSubTitleHistory |  IRecommendHistory | IOptionHistory)[]
 
 export interface IOnlyTitleHistory {
 	menuType:menuType.onlyTitleType,
@@ -53,6 +53,7 @@ const genesis = createSlice({
 		NEXT:(state) =>{
 			state.number = state.number + 1 
 		},
+
 		PREV:(state) =>{
 			if(state.number === 1){
 				return
@@ -81,7 +82,6 @@ const genesis = createSlice({
 				state.tenHistory.splice(filteredIndex,1)
 			}
 		}
-			
 	}
 })
 

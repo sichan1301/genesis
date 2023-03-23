@@ -17,7 +17,7 @@ const OptionResult = () => {
     <>
       {
 				filteredHistory.map(item =><div key={uuidv4()}> 
-          <p>{item.number}.{item.newItem.title}</p>
+          <p>{item.newItem.title}</p>
             <ul>
               {item.newItem.option.map(item => <li key={uuidv4()}>{item}</li>)}
             </ul>

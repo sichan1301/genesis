@@ -7,10 +7,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Color = () => {
 	const number = useSelector((state:RootState)=>state.number)
+	const dispatch = useDispatch()
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
-	const dispatch = useDispatch()
 
 	return(
 		<>

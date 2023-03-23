@@ -12,7 +12,7 @@ const OnlyTitleResult = () => {
   return(
     <>
     	{
-				filteredHistory.map(item => <p key={uuidv4()}>{item.number}.{item.text}</p>)
+				filteredHistory.map(item => <p key={uuidv4()}>{item.text}</p>)
 			}
     </>
   )

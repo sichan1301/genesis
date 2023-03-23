@@ -17,7 +17,7 @@ const HasSubTitleResult = () => {
       {
         filteredHistory.map(item => (
           <div key={uuidv4()}>
-            <p>{item.number}.{item.item.title}</p>
+            <p>{item.item.title}</p>
             <p>{item.item.subTitle}</p>
           </div>
         ))

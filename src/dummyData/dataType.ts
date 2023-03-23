@@ -16,7 +16,7 @@ export enum menuType {
 	option
 }
 
-export type menuDataType = (onlyTitleType[] | hasSubTitleType[] | colorType[] | recommendType[] | optionType[] )
+export type menuDataType = (onlyTitleType | hasSubTitleType | colorType | recommendType | optionType )[]
 
 export type onlyTitleType = string
 
