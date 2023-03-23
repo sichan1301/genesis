@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
-import { IColorHistory, RootState } from "../../store"
+import { RootState } from "../store/store"
+import { IColorHistory } from "../store/stateType";
 import { v4 as uuidv4 } from 'uuid';
 import { menuType } from "../../dummyData/dataType";
 
@@ -12,7 +13,7 @@ const ColorResult = () => {
   return(
     <>
       {
-        filteredHistory.map(item => <p key={uuidv4()}>{item.text}</p>)
+        filteredHistory.map(item => <p key={uuidv4()}>{item.item.title}</p>)
       }
     </>
   )

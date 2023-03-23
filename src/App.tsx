@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from './store';
+import { RootState } from './components/store/store';
 import './App.css';
 import Result from './components/Result';
 import Select from './components/Select';

@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType, optionType } from "../../dummyData/dataType"
-import { RootState, TENHISTORY } from "../../store"
+import { RootState, TENHISTORY } from "../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,7 +18,6 @@ const Option = () => {
 			item.selected = !item.selected
 		}
 		const newItem = {...item}
-		console.log(newItem.selected)
 		dispatch(TENHISTORY({menuType,number,newItem}))
 	}
 

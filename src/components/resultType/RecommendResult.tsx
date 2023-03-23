@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { menuType } from "../../dummyData/dataType"
-import { IRecommendHistory, RootState } from "../../store"
+import { RootState } from "../store/store"
+import { IRecommendHistory } from "../store/stateType";
 import { v4 as uuidv4 } from 'uuid';
 
 

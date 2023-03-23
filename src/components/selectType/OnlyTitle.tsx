@@ -2,10 +2,10 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType,onlyTitleType} from "../../dummyData/dataType"
-import { RootState } from "../../store"
+import { RootState } from "../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import { HISTORY } from "../../store"
+import { HISTORY } from "../store/store"
 
 const OnlyTitle = () => {
 	const number = useSelector((state:RootState)=>state.number)

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { hasSubTitleType, menuDataType } from "../../dummyData/dataType"
-import { HISTORY, RootState } from "../../store"
+import { HISTORY, RootState } from "../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 

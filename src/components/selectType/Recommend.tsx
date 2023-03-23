@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType, recommendType } from "../../dummyData/dataType"
-import { HISTORY, RootState, TENHISTORY } from "../../store"
+import { HISTORY, RootState, TENHISTORY } from "../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
