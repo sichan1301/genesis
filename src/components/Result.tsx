@@ -17,7 +17,7 @@ const Result = () => {
 	return (
 		<>
 			<h1>result</h1>
-			{recommendHistory ?
+			{
 				history.map((item:historyType) => {		
 					switch(item.menuType){
 						case menuType.onlyTitleType:
@@ -29,12 +29,12 @@ const Result = () => {
 						case menuType.recommend:
 							return <RecommendResult item={item}/>
 						default:
-							break;
+							return <RecommendResult item={item}/>
 					}
-				}):<RecommendResult />
+				}) 
 			}
+			{history.filter((item:historyType) =>item.menuType === menuType.recommend).length === 0 && <RecommendResult />}
 
-			
 			<OptionResult />
 			<button onClick = {() => dispatch(PREV())}>이전</button>
 		</>
