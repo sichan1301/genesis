@@ -4,23 +4,18 @@ import { RootState } from "../../store/store"
 import { IRecommendHistory } from "../../store/stateType";
 import { v4 as uuidv4 } from 'uuid';
 
+type RecommendResultProps = {
+  item:IRecommendHistory
+}
 
-const RecommendResult = () => {
-  const history = useSelector((state:RootState) => state.history)
-  const filteredHistory = (history as Array<IRecommendHistory>).filter(item =>item.menuType === menuType.recommend)
-
+const RecommendResult = ({item}:RecommendResultProps) => {
   return(
-    <>
-      {
-				filteredHistory.map(item =><div key={uuidv4()}> 
-          <p>{item.item.title}</p>
-            <ul>
-              {item.item.option.map(item => <li key={uuidv4()}>{item}</li>)}
-            </ul>
-          </div>
-        )
-			}
-    </>
+    <div>
+      <p>{item.item.title}</p>
+      <ul>
+        {item.item.option.map(item => <li key={uuidv4()}>{item}</li>)}
+      </ul>
+    </div>
   )
 }
 

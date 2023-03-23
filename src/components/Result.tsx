@@ -13,36 +13,27 @@ const Result = () => {
 	const history = useSelector((state:RootState) => state.history)
 	const dispatch = useDispatch()
 	
-	// const filteredResult = () => {
-	// 	return(
-	// 		history.map((item:historyType) => {
-	// 			switch(item.menuType){
-	// 				case menuType.onlyTitleType:
-	// 					return <OnlyTitleResult />
-	// 				case menuType.color:
-	// 					return <ColorResult />
-	// 				case menuType.hasSubTitleType:
-	// 					return <HasSubTitleResult />
-	// 				case menuType.recommend:
-	// 					return <RecommendResult />
-	// 				case menuType.option:
-	// 					return <OptionResult />
-	// 				default:
-	// 					break;
-	// 				}
-	// 			})
-	// 	)
-	// 	}
-
 	return (
 		<>
 			<h1>result</h1>
-			{/* {filteredResult()} */}
-				<OnlyTitleResult />
-				<ColorResult />
-				<HasSubTitleResult />
-				<RecommendResult />
-				<OptionResult />
+			{
+				history.map((item:historyType) => {
+					switch(item.menuType){
+						case menuType.onlyTitleType:
+							return <OnlyTitleResult item = {item} />
+						case menuType.color:
+							return <ColorResult item = {item} />
+						case menuType.hasSubTitleType:
+							return <HasSubTitleResult item={item}/>
+						case menuType.recommend:
+							return <RecommendResult item={item}/>
+						default:
+							break;
+						}
+				})
+			}
+			<OptionResult />
+
 			<button onClick = {() => dispatch(PREV())}>이전</button>
 		</>
 	)
