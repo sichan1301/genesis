@@ -12,13 +12,17 @@ const OnlyTitle = () => {
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
+	const title = filteredData.title
 	const dispatch = useDispatch()
 	
+	console.log();
+	
+
 	return(
 		<>
 			{
 				(menuData as Array<onlyTitleType>).map(item => 
-					<Title onClick ={()=>{dispatch(HISTORY({menuType,number,text:item}))}} key={uuidv4()}>{item}</Title>)
+					<Title onClick ={()=>{dispatch(HISTORY({menuType,number,text:item,title}))}} key={uuidv4()}>{item}</Title>)
 			}
 		</>        
 	)

@@ -11,6 +11,7 @@ const Color = () => {
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
+	const title = filteredData.title
 
 	return(
 		<>
@@ -18,7 +19,7 @@ const Color = () => {
 				<SelectBox key={uuidv4()}>
 					<Title>{item.title}</Title>
 					<SubMenuDiv>
-						{item.subMenu.map(item => <SubTitle onClick ={()=>dispatch(HISTORY({menuType,number,item}))} key={uuidv4()}>{item}</SubTitle>)}
+						{item.subMenu.map(item => <SubTitle onClick ={()=>dispatch(HISTORY({menuType,number,item,title}))} key={uuidv4()}>{item}</SubTitle>)}
 					</SubMenuDiv>
 				</SelectBox>
 			))}

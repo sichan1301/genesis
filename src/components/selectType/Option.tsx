@@ -11,6 +11,7 @@ const Option = () => {
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
+	const title = filteredData.title
 	const dispatch = useDispatch()
 
 	const handleClick = (item:optionType) => {
@@ -18,7 +19,7 @@ const Option = () => {
 			item.selected = !item.selected
 		}
 		const newItem = {...item}
-		dispatch(TENHISTORY({menuType,number,newItem}))
+		dispatch(TENHISTORY({menuType,number,newItem,title}))
 	}
 
 	return(

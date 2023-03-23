@@ -4,7 +4,12 @@ type OnlyTitleResultProps = {
   item: IOnlyTitleHistory
 }
 const OnlyTitleResult = ({item}:OnlyTitleResultProps) => {
-  return <p>{item.text}</p>
+  return (
+    <>
+      <h2>{item.title}</h2>
+      <p>{item.text}</p>
+    </>
+  )
 }
 
 

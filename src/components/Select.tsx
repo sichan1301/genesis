@@ -6,7 +6,7 @@ import JustTitle from "./selectType/OnlyTitle"
 import Color from "./selectType/Color"
 import HasSubTitle from "./selectType/HasSubTitle"
 import Option from "./selectType/Option"
-import { useCallback, useEffect } from "react"
+import { useCallback } from "react"
 import Recommend from "./selectType/Recommend"
 
 

@@ -8,16 +8,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Recommend = () => {
 	const number = useSelector((state:RootState)=>state.number)
+	const dispatch = useDispatch()
+
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
-	const dispatch = useDispatch()
+	const title = filteredData.title
 
 	return(
 		<>
 			{
 				(menuData as Array<recommendType>).map(item => (
-					<SelectBox onClick = {()=>dispatch(HISTORY({menuType,number,item}))} key={uuidv4()}>
+					<SelectBox onClick = {()=>dispatch(HISTORY({menuType,number,item,title}))} key={uuidv4()}>
 						<Title>{item.title}</Title>
 						<OptionUl>
 							{item.option.map(item =><Option key={uuidv4()}>{item}</Option>)}

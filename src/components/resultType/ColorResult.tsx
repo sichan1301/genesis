@@ -5,7 +5,12 @@ type ColorResultProps = {
 }
 
 const ColorResult = ({item}:ColorResultProps) => {
-  return <p>{item.item}</p>
+  return (
+    <>
+      <h2>{item.title}</h2>
+      <p>{item.item}</p>
+    </>
+  )
 }
 
 export default ColorResult

@@ -26,7 +26,7 @@ const genesis = createSlice({
 
 		HISTORY:(state:IState,action) => {
 			const numberFilteredIndex = state.history.findIndex(item => item.number === action.payload.number)
-	                     
+	              
 			if(numberFilteredIndex !== -1){
 				state.history.splice(numberFilteredIndex,1,action.payload)
 			}else{
@@ -34,7 +34,7 @@ const genesis = createSlice({
 			}
 			
 				// state.history.sort((a,b)=> a.number > b.number ? 1 : -1 )
-			},
+		},
 			
 		TENHISTORY:(state,action) =>{  
 			if(action.payload.newItem.selected === true){

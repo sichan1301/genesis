@@ -11,12 +11,14 @@ const OptionResult = () => {
   return(
     <>
       {
-				filteredHistory.map(item =><div key={uuidv4()}> 
+				filteredHistory.map(item =>
+        <div key={uuidv4()}> 
+          <h2>{item.title}</h2>
           <p>{item.newItem.title}</p>
-            <ul>
-              {item.newItem.option.map(item => <li key={uuidv4()}>{item}</li>)}
-            </ul>
-          </div>
+          <ul>
+            {item.newItem.option.map(item => <li key={uuidv4()}>{item}</li>)}
+          </ul>
+        </div>
         )
 			}
     </>

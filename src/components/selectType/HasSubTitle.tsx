@@ -10,12 +10,13 @@ const HasSubTitle = () => {
 	const filteredData = data.filter(item => item.number === number)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
+	const title = filteredData.title
 	const dispatch = useDispatch()
 	return(
 		<>
 			{
 				(menuData as Array<hasSubTitleType>).map(item => 
-					<SelectBox onClick ={()=>{dispatch(HISTORY({menuType,number,item}))}} key={uuidv4()}>
+					<SelectBox onClick ={()=>{dispatch(HISTORY({menuType,number,item,title}))}} key={uuidv4()}>
 						<Title>{item.title}</Title> 
 						<SubTitle>{item.subTitle}</SubTitle>
 					</SelectBox>)
