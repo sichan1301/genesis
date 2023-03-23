@@ -6,7 +6,8 @@ import {  PREV, RootState } from "../store"
 import ColorResult from "./resultType/ColorResult"
 import HasSubTitleResult from "./resultType/HasSubTitleResult"
 import OnlyTitleResult from "./resultType/OnlyTitleResult"
-import PackageResult from "./resultType/PackageResult"
+import OptionResult from "./resultType/OptionResult"
+import RecommendResult from "./resultType/RecommendResult"
 
 const Result = () => {
 	const history = useSelector((state:RootState) => state.history)
@@ -36,7 +37,8 @@ const Result = () => {
 			<OnlyTitleResult />
 			<ColorResult />
 			<HasSubTitleResult />
-			<PackageResult />
+			<RecommendResult />
+			<OptionResult />
 
 			<button onClick = {() => dispatch(PREV())}>이전</button>
 		</>

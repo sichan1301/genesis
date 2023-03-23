@@ -1,14 +1,14 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { hasSubTitleType, menuType, packageType } from "./dummyData/dataType";
+import { hasSubTitleType, menuType, optionType,recommendType } from "./dummyData/dataType";
 
 
 interface IState{
 	number:number,
 	history: historyType,
-	tenHistory:IPackageHistory[]
+	tenHistory:IOptionHistory[]
 }
 
-export type historyType = IOnlyTitleHistory[] | IColorHistory[] | IHasSubTitleHistory[] |  IPackageHistory[] 
+export type historyType = IOnlyTitleHistory[] | IColorHistory[] | IHasSubTitleHistory[] |  IRecommendHistory[] | IOptionHistory[]
 
 export interface IOnlyTitleHistory {
 	menuType:menuType.onlyTitleType,
@@ -16,10 +16,16 @@ export interface IOnlyTitleHistory {
 	text:string
 }
 
-export interface IPackageHistory {
-	menuType:menuType.package,
+export interface IRecommendHistory {
+	menuType:menuType.recommend,
 	number:number,
-	newItem:packageType
+	item:recommendType
+}
+
+export interface IOptionHistory {
+	menuType:menuType.option,
+	number:number,
+	newItem:optionType
 }
 
 export interface IHasSubTitleHistory {
@@ -67,17 +73,14 @@ const genesis = createSlice({
 				// state.history.sort((a,b)=> a.number > b.number ? 1 : -1 )
 			},
 			
-			TENHISTORY:(state,action) =>{
-				if(action.payload.number === 10){
-					if(action.payload.newItem.selected === true){
-						(state.tenHistory as Array<packageType>).push(action.payload)
-					}else{
-						const filteredIndex = state.tenHistory.findIndex((item:IPackageHistory) => item.newItem.title === action.payload.newItem.title)
-						state.tenHistory.splice(filteredIndex,1)
-					}
-				}
-				
+		TENHISTORY:(state,action) =>{   //10번 
+			if(action.payload.newItem.selected === true){
+				(state.tenHistory as Array<optionType>).push(action.payload)
+			}else{
+				const filteredIndex = state.tenHistory.findIndex((item:IOptionHistory) => item.newItem.title === action.payload.newItem.title)
+				state.tenHistory.splice(filteredIndex,1)
 			}
+		}
 			
 	}
 })

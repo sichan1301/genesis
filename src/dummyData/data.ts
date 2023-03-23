@@ -141,7 +141,7 @@ export const data:dataType[] = [
 		number:9,
 		title:"추천 사양",
 		menu:{
-			type:menuType.package,
+			type:menuType.recommend,
 			menuData:[
 				{
 					title:"프리미엄 컬렉션",
@@ -168,7 +168,7 @@ export const data:dataType[] = [
 		number:10,
 		title:"옵션 선택",
 		menu:{
-			type:menuType.package,
+			type:menuType.option,
 			menuData:[
 				{
 					title:"파노라마 선루프",

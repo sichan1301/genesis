@@ -12,10 +12,11 @@ export enum menuType {
 	onlyTitleType,
 	hasSubTitleType,
 	color,
-	package
+	recommend,
+	option
 }
 
-export type menuDataType = (onlyTitleType[] | hasSubTitleType[] | colorType[] | packageType[] )
+export type menuDataType = (onlyTitleType[] | hasSubTitleType[] | colorType[] | recommendType[] | optionType[] )
 
 export type onlyTitleType = string
 
@@ -24,10 +25,15 @@ export type colorType = {
 	subMenu:string[],
 }
 
-export type packageType = {
+export type recommendType = {
 	title:string,
 	option:string[],
-	selected?:boolean		
+}
+
+export type optionType = {
+	title:string,
+	option:string[],
+	selected:boolean		
 }
 
 export type hasSubTitleType = {
