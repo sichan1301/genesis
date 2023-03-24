@@ -6,8 +6,11 @@ export const data:dataType[] = [
 		number:1,
 		title:"바디 타입",
 		menu:{
-			type:menuType.onlyTitleType,
-			menuData:["세단","롱휠베이스"]
+			type:menuType.titleType,
+			menuData:[
+				{title:"세단"},
+				{title:"롱휠베이스"}
+			]
 		}
 	},
 	{
@@ -15,17 +18,22 @@ export const data:dataType[] = [
 		number:2,
 		title:"엔진 타입",
 		menu:{
-			type:menuType.onlyTitleType,
-			menuData:["가솔린 3.5 터보"]
-		} 
+			type:menuType.titleType,
+			menuData:[{
+				title:"가솔린 3.5 터보"
+			}]
+		}
 	},
 	{
 		category:"파워트레인",
 		number:3,
 		title:"구동 타입",
 		menu:{
-			type:menuType.onlyTitleType,
-			menuData:["2WD","AWD"]
+			type:menuType.titleType,
+			menuData:[
+				{title:"2WD"},
+				{title:"AWD"}
+			]
 		}
 	},
 	{
@@ -34,8 +42,11 @@ export const data:dataType[] = [
 		number:4,
 		title:"인승 타입",
 		menu:{
-			type:menuType.onlyTitleType,
-			menuData:["스탠다드 시트 (5인승)","퍼스트 클래스 VIP 시트 (4인승)"]
+			type:menuType.titleType,
+			menuData:[
+				{title:"스탠다드 시트 (5인승)"},
+				{title:"퍼스트 클래스 VIP 시트 (4인승)"}
+			]
 		}
 	},
 
@@ -62,7 +73,7 @@ export const data:dataType[] = [
 		number:6,
 		title:"휠 & 타이어",
 		menu:{
-			type:menuType.hasSubTitleType,	
+			type:menuType.titleType,	
 			menuData:[
 				{
 					title:"19인치 다이아몬드 컷팅 휠",

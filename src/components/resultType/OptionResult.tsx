@@ -3,15 +3,15 @@ import { menuType } from "../../dummyData/dataType"
 import { RootState } from "../../store/store"
 import { IOptionHistory } from "../../store/stateType"
 import { v4 as uuidv4 } from 'uuid';
-import { data } from "../../dummyData/data";
+
 
 const OptionResult = () => {
-  const tenHistory = useSelector((state:RootState) => state.tenHistory)
-  const filteredHistory = (tenHistory as Array<IOptionHistory>).filter(item =>item.menuType === menuType.option)
-  const title = data.filter(item =>item.number===10)[0].title
+  const history = useSelector((state:RootState) => state.history)
+  const filteredHistory = (history as Array<IOptionHistory>).filter(item =>item.menuType === menuType.option)
+
   return(
     <>
-      <h2>{title}</h2>
+      <h2>옵션 선택</h2>
       {
 				filteredHistory.map(item =>
         <div key={uuidv4()}> 

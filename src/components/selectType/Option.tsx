@@ -2,13 +2,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
 import { menuDataType, optionType } from "../../dummyData/dataType"
-import { RootState, TENHISTORY } from "../../store/store"
+import { RootState, OPTION_UPDATE } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 const Option = () => {
-	const number = useSelector((state:RootState)=>state.number)
-	const filteredData = data.filter(item => item.number === number)[0]
+	const step = useSelector((state:RootState)=>state.step)
+	const filteredData = data.filter(item => item.number === step)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
@@ -19,7 +19,7 @@ const Option = () => {
 			item.selected = !item.selected
 		}
 		const newItem = {...item}
-		dispatch(TENHISTORY({menuType,number,newItem,title}))
+		dispatch(OPTION_UPDATE({menuType,step,newItem,title}))
 	}
 
 	return(

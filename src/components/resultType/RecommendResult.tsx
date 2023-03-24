@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { data } from "../../dummyData/data";
 
 type RecommendResultProps = {
-  item?:IRecommendHistory
+  item:IRecommendHistory
 }
 
 const RecommendResult = ({item}:RecommendResultProps) => {
@@ -11,9 +11,12 @@ const RecommendResult = ({item}:RecommendResultProps) => {
   
   return(
     <>
-      {item ? <>
-        <h2>{title}</h2><p>{item.item.title}</p><ul>{item.item.option.map(item => <li key={uuidv4()}>{item}</li>)} </ul></>
-        :<h2>{title}</h2>}
+       <>
+        <h2>{title}</h2>
+        <p>{item.item.title}</p>
+        <ul>{item.item.option && item.item.option.map(item => <li key={uuidv4()}>{item}</li>)} </ul>
+      </>
+        
     </>
   )
 }

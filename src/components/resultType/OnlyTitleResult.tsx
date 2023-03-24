@@ -7,7 +7,8 @@ const OnlyTitleResult = ({item}:OnlyTitleResultProps) => {
   return (
     <>
       <h2>{item.title}</h2>
-      <p>{item.text}</p>
+      <p>{item.item.title}</p>
+      <p>{item.item?.subTitle}</p>
     </>
   )
 }

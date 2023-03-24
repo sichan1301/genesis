@@ -6,10 +6,10 @@ import Result from './components/Result';
 import Select from './components/Select';
 
 function App() {
-  const number = useSelector((state:RootState)=>state.number)
+  const step = useSelector((state:RootState)=>state.step)
   return (
     <>
-      {number <=10 ?  <Select /> : <Result />}
+      {step <=10 ?  <Select /> : <Result />}
     </>
   );
 }
