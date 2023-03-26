@@ -19,7 +19,8 @@ export type menuDataType = ( titleType | colorType | optionType | selectableOpti
 
 export type titleType = {
 	title:string,
-	subTitle?:string
+	subTitle?:string,
+	// select?:boolean
 }
 
 export type colorType = {

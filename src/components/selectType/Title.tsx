@@ -5,6 +5,8 @@ import { RootState } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { UPDATE } from "../../store/store"
+import { ITitleHistory } from "../../store/stateType";
+import { useEffect } from "react";
 
 const Title = () => {
 	// const selected = useState("black")
@@ -18,13 +20,18 @@ const Title = () => {
 	const menuType = filteredData[0].menu.type
 	const title = filteredData[0].title
 
-	// const hahaha = () => {
-	// 	menuData.filter((item:titleType) => item === (history as IOnlyTitleHistory[]).)
-	// }
-
 	const handleClick = (item:titleType) => {
 		dispatch(UPDATE({menuType,step,item,title}))
 	}
+
+	const filterIndex = () => {
+		var filteredIndex = menuData.findIndex(item=> item.title === (history as ITitleHistory[])[step-1].item.title)  
+		console.log(menuData[filteredIndex])       // history에 있는 값과 일치하는 데이터
+	}
+
+	useEffect(()=>{
+		filterIndex() 
+	},[history])
 	
 	return(
 		<>
