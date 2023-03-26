@@ -1,30 +1,35 @@
+
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
-import { menuDataType, recommendType } from "../../dummyData/dataType"
-import { UPDATE, RootState } from "../../store/store"
+import { menuDataType, optionType, selectableOptionType } from "../../dummyData/dataType"
+import { RootState, UPDATE } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-const Recommend = () => {
+const SelectableOption = () => {
 	const step = useSelector((state:RootState)=>state.step)
-	const dispatch = useDispatch()
-
-	const filteredData = data.filter(item => item.number === step)[0]
+	const filteredData = data[9]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
+	const dispatch = useDispatch()
 
-	const handleClick = (item:recommendType) => {
-		dispatch(UPDATE({menuType,step,item,title}))
+	const handleClick = (item:selectableOptionType) => {
+		if(item.selected !== null){
+			item.selected = !item.selected
+		}
+		const newItem = {...item}
+		dispatch(UPDATE({menuType,step,newItem,title}))
 	}
+
 	return(
 		<>
 			{
-				(menuData as Array<recommendType>).map(item => (
-					<SelectBox onClick = {()=>{handleClick(item)}} key={uuidv4()}>
+				(menuData as Array<selectableOptionType>).map(item => (
+					<SelectBox onClick = {()=>handleClick(item)} key={uuidv4()}>
 						<Title>{item.title}</Title>
 						<OptionUl>
-							{item.option.map(item =><Option key={uuidv4()}>{item}</Option>)}
+							{item.option.map(item =><OptionLi key={uuidv4()}>{item}</OptionLi>)}
 						</OptionUl>
 					</SelectBox>
 				))
@@ -33,7 +38,7 @@ const Recommend = () => {
 	)
 }
 
-export default Recommend 
+export default SelectableOption 
 
 const SelectBox = styled.div`
 	margin-bottom:10px;
@@ -50,7 +55,7 @@ const Title = styled.p`
 const OptionUl = styled.ul`
 	margin:0;
 `
-const Option = styled.li`
+const OptionLi = styled.li`
 	font-size:12px;
 
 `

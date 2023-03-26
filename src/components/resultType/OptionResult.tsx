@@ -1,27 +1,22 @@
-import { useSelector } from "react-redux"
-import { menuType } from "../../dummyData/dataType"
-import { RootState } from "../../store/store"
-import { IOptionHistory } from "../../store/stateType"
+import { IOptionHistory } from "../../store/stateType";
 import { v4 as uuidv4 } from 'uuid';
+import { data } from "../../dummyData/data";
 
+type OptionResultProps = {
+  item:IOptionHistory
+}
 
-const OptionResult = () => {
-  const history = useSelector((state:RootState) => state.history)
-  const filteredHistory = (history as Array<IOptionHistory>).filter(item =>item.menuType === menuType.option)
-
+const OptionResult = ({item}:OptionResultProps) => {
+  const title = data[8].title
+  
   return(
     <>
-      <h2>옵션 선택</h2>
-      {
-				filteredHistory.map(item =>
-        <div key={uuidv4()}> 
-          <p>{item.newItem.title}</p>
-          <ul>
-            {item.newItem.option.map(item => <li key={uuidv4()}>{item}</li>)}
-          </ul>
-        </div>
-        )
-			}
+       <>
+        <h2>{title}</h2>
+        <p>{item.item.title}</p>
+        <ul>{item.item.option && item.item.option.map(item => <li key={uuidv4()}>{item}</li>)} </ul>
+      </>
+        
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { menuType } from "../dummyData/dataType";
-import { IOptionHistory } from "./stateType";
+import { ISelectableOptionHistory } from "./stateType";
 
 
 const genesis = createSlice({
@@ -17,10 +17,9 @@ const genesis = createSlice({
 			{menuType: menuType.titleType, step: 6, item: {title: '19인치 다이아몬드 컷팅 휠', subTitle: '피렐리 타이어 (245/50R19)'}, title: '휠 & 타이어'},
 			{menuType: menuType.color,	step: 7, item: "옵시디언 블랙 모노톤", title:"내장 컬러 및 재질"},
 			{menuType: menuType.color, step: 8, item: '인서트 필름 (스탠다드 디자인)', title: '인테리어 옵션'},
-			{menuType: menuType.recommend, step: 9, item: {title:"",option:""}, title: '추천 사양'},
-			{menuType: menuType.option, step: 10, newItem: {title:"" , option:[], selected:false}, title: '옵션 선택'},
+			{menuType: menuType.option, step: 9, item: {title:"",option:""}, title: '추천 사양'},
+			{menuType: menuType.selectableOption, step: 10, newItem: {title:"" , option:[], selected:false}, title: '옵션 선택'},
 		]
-
 	},
 	
 	reducers:{
@@ -44,24 +43,18 @@ const genesis = createSlice({
 			if(action.payload.step !== 10){
 				const numberFilteredIndex = state.history.findIndex(item => item.step === action.payload.step)
 				state.history.splice(numberFilteredIndex,1,action.payload)
-			}
-		},
-			
-		OPTION_UPDATE:(state,action) =>{  
-			if(action.payload.step === 10){
+			}else{
 				if(action.payload.newItem.selected === true){
-					if((state.history as IOptionHistory[]).filter(item => item.newItem.title === "").length !== 0){
-						state.history.splice(9,1)
-					}
 					state.history.push(action.payload)
 				}else{
-					const filteredIndex = (state.history as IOptionHistory[]).findIndex(item => item.newItem.title === action.payload.newItem.title)
+					const filteredIndex = (state.history as ISelectableOptionHistory[]).findIndex(item => item.newItem === action.payload.newItem)
 					state.history.splice(filteredIndex,1)
 				}
 			}
 		}
+		}
 	}
-})
+)
 
 
 export const store = configureStore({
@@ -69,5 +62,5 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>;
-export const {NEXT,PREV,UPDATE,OPTION_UPDATE} = genesis.actions
+export const {NEXT,PREV,UPDATE} = genesis.actions
 export default genesis

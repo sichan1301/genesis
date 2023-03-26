@@ -1,5 +1,4 @@
-import { menuType, titleType } from "../dummyData/dataType"
-import { recommendType,optionType,colorType } from "../dummyData/dataType"
+import { menuType, selectableOptionType, titleType,optionType } from "../dummyData/dataType"
 
 
 export interface IState{
@@ -7,9 +6,9 @@ export interface IState{
 	history: historyType[],
 }
 
-export type historyType = (IOnlyTitleHistory | IColorHistory |  IRecommendHistory | IOptionHistory)
+export type historyType = (ITitleHistory | IColorHistory | IOptionHistory | ISelectableOptionHistory)
 
-export interface IOnlyTitleHistory {
+export interface ITitleHistory {
 	menuType:menuType.titleType,
 	title:string,
 	step:number,
@@ -23,16 +22,16 @@ export interface IColorHistory {
 	item:string //subMenu
 }
 
-export interface IRecommendHistory {
-	menuType:menuType.recommend,
-	title:string,
-	step:number,
-	item:recommendType
-}
-
 export interface IOptionHistory {
 	menuType:menuType.option,
 	title:string,
 	step:number,
-	newItem:optionType
+	item:optionType
 }
+
+export interface ISelectableOptionHistory {
+	menuType:menuType.selectableOption,
+	title:string,
+	step:number,
+	newItem:selectableOptionType
+}	

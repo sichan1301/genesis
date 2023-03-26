@@ -3,9 +3,9 @@ import { menuType } from "../dummyData/dataType"
 import { historyType } from "../store/stateType"
 import {  PREV, RootState } from "../store/store"
 import ColorResult from "./resultType/ColorResult"
-import OnlyTitleResult from "./resultType/OnlyTitleResult"
+import TitleResult from "./resultType/TitleResult"
 import OptionResult from "./resultType/OptionResult"
-import RecommendResult from "./resultType/RecommendResult"
+import SelectableOptionResult from "./resultType/SelectableOptionResult"
 
 
 const Result = () => {
@@ -19,18 +19,18 @@ const Result = () => {
 				history.map((item:any) => {		
 					switch(item.menuType){
 						case menuType.titleType:
-							return <OnlyTitleResult item = {item} />
+							return <TitleResult item = {item} />
 						case menuType.color:
 							return <ColorResult item = {item} />
-						case menuType.recommend:
-							return <RecommendResult item={item}/>
+						case menuType.option:
+							return <OptionResult item={item}/>
 						default:
 							return
 						}
 				}) 
 			}
 
-			<OptionResult />
+			<SelectableOptionResult />
 			<button onClick = {() => dispatch(PREV())}>이전</button>
 		</>
 	)

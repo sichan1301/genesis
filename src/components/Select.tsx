@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState,NEXT,PREV } from "../store/store"
 import { data } from "../dummyData/data"
 import { menuType } from "../dummyData/dataType"
-import OnlyTitle from "./selectType/OnlyTitle"
 import Color from "./selectType/Color"
-import Option from "./selectType/Option"
+import Option from "./selectType/SelectableOption"
 import { useCallback } from "react"
-import Recommend from "./selectType/Recommend"
+import Recommend from "./selectType/Option"
+import Title from "./selectType/Title"
 
 
 const Select = () => {
@@ -19,12 +19,12 @@ const Select = () => {
 	const filterDataType = useCallback(() =>{
 		switch(dataType){
 			case menuType.titleType:
-				return <OnlyTitle />
+				return <Title />
 			case menuType.color:
 				return <Color />
-			case menuType.recommend:
-				return <Recommend />
 			case menuType.option:
+				return <Recommend />
+			case menuType.selectableOption:
 				return <Option />
 			default:
 				break;	

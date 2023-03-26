@@ -6,15 +6,22 @@ import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { UPDATE } from "../../store/store"
 
-const OnlyTitle = () => {
+const Title = () => {
+	// const selected = useState("black")
 	const step = useSelector((state:RootState)=>state.step)
+	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
 	
-	const filteredData = data.filter(item => item.number === step)[0]
-	const menuData:menuDataType = filteredData.menu.menuData
-	const menuType = filteredData.menu.type
-	const title = filteredData.title
-	
+	const filteredData = data.filter(item => item.number === step)  //해당 넘버 데이터
+
+	const menuData:menuDataType = filteredData[0].menu.menuData
+	const menuType = filteredData[0].menu.type
+	const title = filteredData[0].title
+
+	// const hahaha = () => {
+	// 	menuData.filter((item:titleType) => item === (history as IOnlyTitleHistory[]).)
+	// }
+
 	const handleClick = (item:titleType) => {
 		dispatch(UPDATE({menuType,step,item,title}))
 	}
@@ -24,16 +31,15 @@ const OnlyTitle = () => {
 			{
 				(menuData as titleType[]).map(item => 
 					<SelectBox onClick ={()=>handleClick(item)} key={uuidv4()}>
-					<Title>{item.title}</Title> 
+					<TitleP>{item.title}</TitleP> 
 					<SubTitle>{item?.subTitle}</SubTitle>
-				</SelectBox>)
-					
+					</SelectBox>)
 			}
 		</>        
 	)
 }
 
-export default OnlyTitle 
+export default Title 
 
 const SelectBox = styled.div`
 	border:1px solid grey;	
@@ -42,7 +48,7 @@ const SelectBox = styled.div`
 	margin-bottom:10px;
 `
 
-const Title = styled.p`
+const TitleP = styled.p`
 	font-size:16px;
 `
 	

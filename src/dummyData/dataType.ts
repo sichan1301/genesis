@@ -11,11 +11,11 @@ export type dataType = {
 export enum menuType {
 	titleType,
 	color,
-	recommend,
-	option
+	option,
+	selectableOption
 }
 
-export type menuDataType = ( titleType | colorType | recommendType | optionType )[]
+export type menuDataType = ( titleType | colorType | optionType | selectableOptionType)[]
 
 export type titleType = {
 	title:string,
@@ -27,28 +27,11 @@ export type colorType = {
 	subMenu:string[],
 }
 
-export type recommendType = {
-	title:string,
-	option:string[],
-}
-
 export type optionType = {
 	title:string,
 	option:string[],
-	selected:boolean		
 }
 
-
-// export type onlyTitleType = {
-// 	title:string,
-// 	subTitle?:string
-// }
-
-// export interface optionType {	// color / recommand
-// 	title:string,
-// 	option:string[]
-// }
-
-// export interface selectableOptionType extends optionType {
-// 	selected: boolean,
-// }
+export interface selectableOptionType extends optionType {
+	selected: boolean
+}
