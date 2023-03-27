@@ -10,7 +10,7 @@ import { ISelectableOptionHistory } from "../../store/stateType";
 import { menuType } from "../../dummyData/dataType";
 
 const SelectableOption = () => {
-	const [targetIndex,setTargetIndex] = useState(0)
+	const [targetIndex,setTargetIndex] = useState<number[]>([])
 
 	const step = useSelector((state:RootState)=>state.step)
 	const history = useSelector((state:RootState)=>state.history)
@@ -28,24 +28,29 @@ const SelectableOption = () => {
 		dispatch(UPDATE({menuType,step,newItem,title}))
 	}
 
+
 	useEffect(()=>{
 		const filteredHistory = history.filter(item=> item.step === 10)    //history에서 10번인 놈들 추출
 		const filteredTitle = filteredHistory.map(item => item.newItem?.title) //그놈들의 title들 배열로 추출 (undefined포함)
+		const titleArray = filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem)).slice(1)
+		setTargetIndex(titleArray)
+		console.log(targetIndex);
+		
 
-		console.log(filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem)))
-
-		console.log(filteredTitle);
 		// menuData.findIndex(item=> filteredTitle((titleItem:string) => titleItem === item.title))
 
 		
 		// setTargetIndex(filteredIndex)
 	},[history])
 
+
+	// targetIndex = {idx === targetIndex}
 	return(
 		<>
+
 			{
 				(menuData as Array<selectableOptionType>).map((item,idx) => (
-					<SelectBox onClick = {()=>handleClick(item)} key={uuidv4()} targetIndex = {idx === targetIndex}>
+					<SelectBox onClick = {()=>handleClick(item)} key={uuidv4()} targetIndex = {targetIndex.map(index => index === idx ? menuData[idx] : null)}>
 						<Title>{item.title}</Title>
 						<OptionUl>
 							{item.option.map(item =><OptionLi key={uuidv4()}>{item}</OptionLi>)}
@@ -60,12 +65,12 @@ const SelectableOption = () => {
 export default SelectableOption 
 
 interface ISelectBox {
-	targetIndex:boolean
+	targetIndex:selectableOptionType[]
 }
 
 const SelectBox = styled.div<ISelectBox>`
 	margin-bottom:10px;
-	border:${props => props.targetIndex ? `5px solid black` : `0.5px solid grey`};
+	border:${props => props.targetIndex.map(item => item ?  `5px solid black` : `0.5px solid grey`)};
 	width:400px;
 	padding:10px;
 	cursor:pointer;
