@@ -24,7 +24,6 @@ const Option = () => {
 	}
 
 	useEffect(()=>{
-		console.log(menuData)
 		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step-1].item.title) 
 		setTargetIndex(filteredIndex)
 	},[history])

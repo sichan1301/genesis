@@ -29,13 +29,14 @@ const SelectableOption = () => {
 	}
 
 	useEffect(()=>{
-		const filteredHistory = history.filter(item=> item.step === 10)
-		const filteredTitle = filteredHistory.map(item => item.newItem?.title)
-		const a = []
+		const filteredHistory = history.filter(item=> item.step === 10)    //history에서 10번인 놈들 추출
+		const filteredTitle = filteredHistory.map(item => item.newItem?.title) //그놈들의 title들 배열로 추출 (undefined포함)
 
-		filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem))
+		console.log(filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem)))
 
 		console.log(filteredTitle);
+		// menuData.findIndex(item=> filteredTitle((titleItem:string) => titleItem === item.title))
+
 		
 		// setTargetIndex(filteredIndex)
 	},[history])
