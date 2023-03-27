@@ -5,9 +5,15 @@ import { menuDataType, optionType, selectableOptionType } from "../../dummyData/
 import { RootState, UPDATE } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from "react";
+import { ISelectableOptionHistory } from "../../store/stateType";
+import { menuType } from "../../dummyData/dataType";
 
 const SelectableOption = () => {
+	const [targetIndex,setTargetIndex] = useState(0)
+
 	const step = useSelector((state:RootState)=>state.step)
+	const history = useSelector((state:RootState)=>state.history)
 	const filteredData = data[9]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
@@ -22,11 +28,23 @@ const SelectableOption = () => {
 		dispatch(UPDATE({menuType,step,newItem,title}))
 	}
 
+	useEffect(()=>{
+		const filteredHistory = history.filter(item=> item.step === 10)
+		const filteredTitle = filteredHistory.map(item => item.newItem?.title)
+		const a = []
+
+		filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem))
+
+		console.log(filteredTitle);
+		
+		// setTargetIndex(filteredIndex)
+	},[history])
+
 	return(
 		<>
 			{
-				(menuData as Array<selectableOptionType>).map(item => (
-					<SelectBox onClick = {()=>handleClick(item)} key={uuidv4()}>
+				(menuData as Array<selectableOptionType>).map((item,idx) => (
+					<SelectBox onClick = {()=>handleClick(item)} key={uuidv4()} targetIndex = {idx === targetIndex}>
 						<Title>{item.title}</Title>
 						<OptionUl>
 							{item.option.map(item =><OptionLi key={uuidv4()}>{item}</OptionLi>)}
@@ -40,9 +58,13 @@ const SelectableOption = () => {
 
 export default SelectableOption 
 
-const SelectBox = styled.div`
+interface ISelectBox {
+	targetIndex:boolean
+}
+
+const SelectBox = styled.div<ISelectBox>`
 	margin-bottom:10px;
-	border:1px solid grey;	
+	border:${props => props.targetIndex ? `5px solid black` : `0.5px solid grey`};
 	width:400px;
 	padding:10px;
 	cursor:pointer;

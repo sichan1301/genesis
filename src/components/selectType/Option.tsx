@@ -4,9 +4,14 @@ import { menuDataType, optionType } from "../../dummyData/dataType"
 import { UPDATE, RootState } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from "react";
+import { IOptionHistory } from "../../store/stateType";
 
 const Option = () => {
+	const [targetIndex,setTargetIndex] = useState(0)
+
 	const step = useSelector((state:RootState)=>state.step)
+	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
 
 	const filteredData = data.filter(item => item.number === step)[0]
@@ -17,11 +22,18 @@ const Option = () => {
 	const handleClick = (item:optionType) => {
 		dispatch(UPDATE({menuType,step,item,title}))
 	}
+
+	useEffect(()=>{
+		console.log(menuData)
+		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step-1].item.title) 
+		setTargetIndex(filteredIndex)
+	},[history])
+
 	return(
 		<>
 			{
-				(menuData as Array<optionType>).map(item => (
-					<SelectBox onClick = {()=>{handleClick(item)}} key={uuidv4()}>
+				(menuData as Array<optionType>).map((item,idx) => (
+					<SelectBox onClick = {()=>{handleClick(item)}} key={uuidv4()} targetIndex = {idx===targetIndex}>
 						<Title>{item.title}</Title>
 						<OptionUl>
 							{item.option.map(item =><OptionLi key={uuidv4()}>{item}</OptionLi>)}
@@ -35,9 +47,13 @@ const Option = () => {
 
 export default Option 
 
-const SelectBox = styled.div`
+interface ISelectBoxProps {
+	targetIndex: boolean
+}
+
+const SelectBox = styled.div<ISelectBoxProps>`
 	margin-bottom:10px;
-	border:1px solid grey;	
+	border:${props => props.targetIndex ? '5px solid black' : '1px solid grey'};	
 	width:400px;
 	padding:10px;
 	cursor:pointer;

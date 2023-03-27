@@ -17,7 +17,7 @@ const genesis = createSlice({
 			{menuType: menuType.titleType, step: 6, item: {title: '19인치 다이아몬드 컷팅 휠', subTitle: '피렐리 타이어 (245/50R19)'}, title: '휠 & 타이어'},
 			{menuType: menuType.color,	step: 7, item: "옵시디언 블랙 모노톤", title:"내장 컬러 및 재질"},
 			{menuType: menuType.color, step: 8, item: '인서트 필름 (스탠다드 디자인)', title: '인테리어 옵션'},
-			{menuType: menuType.option, step: 9, item: {title:"",option:""}, title: '추천 사양'},
+			{menuType: menuType.option, step: 9, item: {title:"",option:[]}, title: '추천 사양'},
 			{menuType: menuType.selectableOption, step: 10, newItem: {title:"" , option:[], selected:false}, title: '옵션 선택'},
 		]
 	},

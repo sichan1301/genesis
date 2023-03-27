@@ -15,7 +15,15 @@ const Select = () => {
 	const numberFilteredData = data.filter(item => item.number === step)[0]
 	const nextButton = step===10 ? "견적보기": "다음" 
 	const dataType = numberFilteredData.menu.type
-	
+
+	const handlePrevClick = () => {
+		dispatch(PREV())
+	}
+
+	const handleNextClick = () => {
+		dispatch(NEXT())
+	}
+
 	const filterDataType = useCallback(() =>{
 		switch(dataType){
 			case menuType.titleType:
@@ -35,8 +43,8 @@ const Select = () => {
 		<>
 			<p>{step}.{numberFilteredData.title}</p>
 			{filterDataType()}
-			<button onClick = {() => dispatch(PREV())}>이전</button>
-			<button onClick = {() => dispatch(NEXT())}>{nextButton}</button>
+			<button onClick = {handlePrevClick}>이전</button>
+			<button onClick = {handleNextClick}>{nextButton}</button>
 		</>
 	)
 }
