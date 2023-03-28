@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from "react-redux"
 import { data } from "../../dummyData/data"
-import { menuDataType, optionType, selectableOptionType } from "../../dummyData/dataType"
+import { menuDataType, selectableOptionType } from "../../dummyData/dataType"
 import { RootState, UPDATE } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
@@ -31,8 +31,7 @@ const SelectableOption = () => {
 		const filteredHistory = history.filter(item=> item.step === 10)      
 		const filteredTitle = filteredHistory.map(item => item.newItem?.title)   
 		const filteredIndex = filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem))   
-		const newTargetIndex = [...filteredIndex]
-		setTargetIndex(newTargetIndex)   
+		setTargetIndex(filteredIndex)   
 	}
 
 	useEffect(()=>{

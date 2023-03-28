@@ -45,7 +45,7 @@ const genesis = createSlice({
 				state.history.splice(numberFilteredIndex,1,action.payload)
 			}else{
 				if(action.payload.newItem.selected === true){
-					if((state.history as ISelectableOptionHistory[])[9]?.newItem.title === ""){
+					if((state.history[9] as ISelectableOptionHistory)?.newItem.title === ""){
 						state.history.splice(9,1)
 					}
 					state.history.push(action.payload)
@@ -56,8 +56,7 @@ const genesis = createSlice({
 			}
 		}
 		
-		}
-	}
+	}}
 )
 
 

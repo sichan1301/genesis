@@ -14,7 +14,7 @@ const Option = () => {
 	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
 
-	const filteredData = data.filter(item => item.number === step+1)[0]
+	const filteredData = data[step]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
@@ -26,8 +26,8 @@ const Option = () => {
 	const handleSelect = () =>{
 		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step].item.title) 
 		setTargetIndex(filteredIndex)
-		
 	}
+
 	useEffect(()=>{
 		handleSelect()
 	},[history])

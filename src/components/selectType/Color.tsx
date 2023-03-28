@@ -4,16 +4,15 @@ import { colorType, menuDataType } from "../../dummyData/dataType"
 import { UPDATE, RootState } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Color = () => {
 	const step = useSelector((state:RootState)=>state.step)
-	const history = useSelector((state:RootState)=>state.history)
 
 	const [categoryIndex, setCategoryIndex] = useState(0)
 	const [subMenuIndex, setSubMenuIndex] = useState(0)
 	const dispatch = useDispatch()
-	const filteredData = data.filter(item => item.number === step+1)[0]
+	const filteredData = data[step]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
@@ -27,20 +26,14 @@ const Color = () => {
 
 	return(
 		<>
-			{
-				<>
-					{
-					(menuData as colorType[]).map((category, categoryIdx) => (
-						<SelectBox key={uuidv4()}>
-							<Title>{category.title}</Title>
-							<SubMenuDiv>
-								{category.subMenu.map((subMenu, subMenuIdx) => <SubTitle onClick ={()=>handleClick(categoryIdx, subMenuIdx)} key={uuidv4()} targetIndex = { categoryIdx === categoryIndex && subMenuIdx===subMenuIndex}>{subMenu}</SubTitle>)}
-							</SubMenuDiv>
-						</SelectBox>
-					))
-					}
-				</>
-			}
+			{(menuData as colorType[]).map((category, categoryIdx) => (
+				<SelectBox key={uuidv4()}>
+					<Title>{category.title}</Title>
+					<SubMenuDiv>
+						{category.subMenu.map((subMenu, subMenuIdx) => <SubTitle onClick ={()=>handleClick(categoryIdx, subMenuIdx)} key={uuidv4()} targetIndex = { categoryIdx === categoryIndex && subMenuIdx===subMenuIndex}>{subMenu}</SubTitle>)}
+					</SubMenuDiv>
+				</SelectBox>
+			))}
 		</>        
 	)
 }

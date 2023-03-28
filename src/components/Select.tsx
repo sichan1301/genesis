@@ -12,7 +12,7 @@ import Title from "./selectType/Title"
 const Select = () => {
 	const step = useSelector((state:RootState)=>state.step)
 	const dispatch = useDispatch()
-	const numberFilteredData = data.filter(item => item.number === step+1)[0]
+	const numberFilteredData = data[step]
 	const nextButton = step===9 ? "견적보기": "다음" 
 	const dataType = numberFilteredData.menu.type
 
