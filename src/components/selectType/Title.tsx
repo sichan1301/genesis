@@ -50,7 +50,7 @@ interface ISelectBoxProps {
 }
 
 const SelectBox = styled.div<ISelectBoxProps>`
-	border:${props => props.targetIndex ? `5px solid black` : `1px solid grey`};
+	border:${props => props.targetIndex ? `3px solid black` : `1px solid grey`};
 	width:300px;
 	cursor:pointer;
 	margin-bottom:10px;

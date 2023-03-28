@@ -23,7 +23,7 @@ const Color = () => {
 
 	useEffect(()=>{
 		const firstFilteredIndex = menuData[0].title === history[step-1].menuTitle && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step-1].item)
-		const secondFilteredIndex = menuData[1].title === history[step-1].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step-1].item)
+		const secondFilteredIndex = menuData[1] && menuData[1].title === history[step-1].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step-1].item)
 		const firstIndex = firstFilteredIndex !== -1 && firstFilteredIndex  
 		const secondIndex = secondFilteredIndex !== -1 && secondFilteredIndex
 
@@ -48,7 +48,7 @@ const Color = () => {
 					<SelectBox key={uuidv4()}>
 					<Title>{menuData[1].title}</Title>
 					<SubMenuDiv>
-						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle2 onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex2 = {idx===secondTargetIndex}>{item}</SubTitle2>)}
+						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle2 onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex = {idx===secondTargetIndex}>{item}</SubTitle2>)}
 					</SubMenuDiv>
 					</SelectBox>
 				}
@@ -72,14 +72,13 @@ const SubMenuDiv = styled.div`
 	flex-wrap:wrap;
 `
 
-
 interface ISubTitleProps {
 	targetIndex:boolean
 }
 
 const SubTitle = styled.p<ISubTitleProps>`
 	font-size:12px;
-	border:${props => props.targetIndex ? `5px solid black` : `0.5px solid grey`};
+	border:${props => props.targetIndex ? `3px solid black` : `0.5px solid grey`};
 	height:30px;
 	line-height: 30px;
 	padding:5px;
@@ -87,13 +86,9 @@ const SubTitle = styled.p<ISubTitleProps>`
 	cursor:pointer;
 `
 
-interface ISubTitle2Props {
-	targetIndex2:boolean
-}
-
-const SubTitle2 = styled.p<ISubTitle2Props>`
+const SubTitle2 = styled.p<ISubTitleProps>`
 	font-size:12px;
-	border:${props => props.targetIndex2 ? `5px solid black` : `0.5px solid grey`};
+	border:${props => props.targetIndex ? `3px solid black` : `0.5px solid grey`};
 	height:30px;
 	line-height: 30px;
 	padding:5px;

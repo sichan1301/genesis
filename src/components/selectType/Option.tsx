@@ -52,7 +52,7 @@ interface ISelectBoxProps {
 
 const SelectBox = styled.div<ISelectBoxProps>`
 	margin-bottom:10px;
-	border:${props => props.targetIndex ? '5px solid black' : '1px solid grey'};	
+	border:${props => props.targetIndex ? '3px solid black' : '1px solid grey'};	
 	width:400px;
 	padding:10px;
 	cursor:pointer;
