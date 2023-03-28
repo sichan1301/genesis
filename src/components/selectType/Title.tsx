@@ -16,19 +16,23 @@ const Title = () => {
 	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
 	
-	const filteredData = data.filter(item => item.number === step+1)  //해당 넘버 데이터
+	const filteredData = data[step+1]  //해당 넘버 데이터
 
-	const menuData:menuDataType = filteredData[0].menu.menuData
-	const menuType = filteredData[0].menu.type
-	const title = filteredData[0].title
+	const menuData:menuDataType = filteredData.menu.menuData
+	const menuType = filteredData.menu.type
+	const title = filteredData.title
 
 	const handleClick = (item:titleType) => {
 		dispatch(UPDATE({menuType,step:step+1,item,title}))
 	}
-	
-	useEffect(()=>{
+
+	const handleSelect = () => {
 		const filteredIndex = menuData.findIndex(item=> item.title === (history as ITitleHistory[])[step].item.title) 
 		setTargetIndex(filteredIndex)
+	}
+	
+	useEffect(()=>{
+		handleSelect()
 	},[history,step])
 
 	return(

@@ -28,9 +28,9 @@ const SelectableOption = () => {
 	}
 
 	const handleSelect = () => {
-		const filteredHistory = history.filter(item=> item.step === 10)      //history에서 10번인 놈들 추출
-		const filteredTitle = filteredHistory.map(item => item.newItem?.title)   //그놈들의 title들 배열로 추출 (undefined포함)
-		const filteredIndex = filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem))   // history에 있는 값들의 menuData 인덱스 
+		const filteredHistory = history.filter(item=> item.step === 10)      
+		const filteredTitle = filteredHistory.map(item => item.newItem?.title)   
+		const filteredIndex = filteredTitle.map(titleItem => menuData.findIndex(item =>item.title === titleItem))   
 		const newTargetIndex = [...filteredIndex]
 		setTargetIndex(newTargetIndex)   
 	}

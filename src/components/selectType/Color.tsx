@@ -7,50 +7,38 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from "react";
 
 const Color = () => {
-	const [targetIndex,setTargetIndex] = useState<number | null | false>(0)
-	const [secondTargetIndex, setSecondTargetIndex] = useState<number | null | false>(0)
 	const step = useSelector((state:RootState)=>state.step)
 	const history = useSelector((state:RootState)=>state.history)
+
+	const [categoryIndex, setCategoryIndex] = useState(0)
+	const [subMenuIndex, setSubMenuIndex] = useState(0)
 	const dispatch = useDispatch()
 	const filteredData = data.filter(item => item.number === step+1)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
 
-	const handleClick = (item:string,menuTitle:string) => {
-		dispatch(UPDATE({menuType,step:step+1,item,menuTitle,title}))
+	const handleClick = (categoryIdx: number, subMenuIdx:number) => {
+		const data = menuData[categoryIdx] as colorType;
+		setCategoryIndex(categoryIdx);
+		setSubMenuIndex(subMenuIdx);
+		dispatch(UPDATE({menuType,step:step+1,item: data.subMenu[subMenuIdx], menuTitle: data.title ,title}))
 	}
-
-	useEffect(()=>{
-		const firstFilteredIndex = menuData[0].title === history[step].menuTitle && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step].item)
-		const secondFilteredIndex = menuData[1] && menuData[1].title === history[step].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step].item)
-		const firstIndex = firstFilteredIndex !== -1 && firstFilteredIndex  
-		const secondIndex = secondFilteredIndex !== -1 && secondFilteredIndex
-
-		setTargetIndex(firstIndex)
-		setSecondTargetIndex(secondIndex)
-	},[history])
 
 	return(
 		<>
 			{
 				<>
-					<SelectBox key={uuidv4()}>
-						<Title>{menuData[0].title}</Title>
-						<SubMenuDiv>
-							{(menuData as colorType[])[0].subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item,menuData[0].title)} key={uuidv4()} targetIndex = {idx===targetIndex}>{item}</SubTitle>)}
-						</SubMenuDiv>
-					</SelectBox>
-
-				{	
-					menuData[1] &&
-					<SelectBox key={uuidv4()}>
-					<Title>{menuData[1].title}</Title>
-					<SubMenuDiv>
-						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex = {idx===secondTargetIndex}>{item}</SubTitle>)}
-					</SubMenuDiv>
-					</SelectBox>
-				}
+					{
+					(menuData as colorType[]).map((category, categoryIdx) => (
+						<SelectBox key={uuidv4()}>
+							<Title>{category.title}</Title>
+							<SubMenuDiv>
+								{category.subMenu.map((subMenu, subMenuIdx) => <SubTitle onClick ={()=>handleClick(categoryIdx, subMenuIdx)} key={uuidv4()} targetIndex = { categoryIdx === categoryIndex && subMenuIdx===subMenuIndex}>{subMenu}</SubTitle>)}
+							</SubMenuDiv>
+						</SelectBox>
+					))
+					}
 				</>
 			}
 		</>        

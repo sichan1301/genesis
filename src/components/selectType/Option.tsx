@@ -23,9 +23,13 @@ const Option = () => {
 		dispatch(UPDATE({menuType,step:step+1,item,title}))
 	}
 
-	useEffect(()=>{
+	const handleSelect = () =>{
 		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step].item.title) 
 		setTargetIndex(filteredIndex)
+		
+	}
+	useEffect(()=>{
+		handleSelect()
 	},[history])
 
 	return(

@@ -1,4 +1,4 @@
-import { createSlice, configureStore, current } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { menuType } from "../dummyData/dataType";
 import { ISelectableOptionHistory } from "./stateType";
 
@@ -54,7 +54,6 @@ const genesis = createSlice({
 					state.history.splice(filteredIndex,1)
 				}
 			}
-			console.log(current(state.history));
 		}
 		
 		}
