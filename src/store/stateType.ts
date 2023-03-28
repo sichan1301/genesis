@@ -19,7 +19,8 @@ export interface IColorHistory {
 	menuType:menuType.color,
 	title:string,
 	step:number,
-	item:string //subMenu
+	item:string, //subMenu
+	menuTitle:string
 }
 
 export interface IOptionHistory {

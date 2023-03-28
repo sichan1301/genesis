@@ -5,11 +5,10 @@ import { UPDATE, RootState } from "../../store/store"
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from "react";
-import { IColorHistory } from "../../store/stateType";
 
 const Color = () => {
-	const [targetIndex,setTargetIndex] = useState<number | null>(0)
-	const [secondTargetIndex, setSecondTargetIndex] = useState<number | null>(0)
+	const [targetIndex,setTargetIndex] = useState<number | null | false>(0)
+	const [secondTargetIndex, setSecondTargetIndex] = useState<number | null | false>(0)
 	const step = useSelector((state:RootState)=>state.step)
 	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
@@ -18,42 +17,29 @@ const Color = () => {
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
 
-	const handleClick = (item:string) => {
-		dispatch(UPDATE({menuType,step,item,title}))
+	const handleClick = (item:string,menuTitle:string) => {
+		dispatch(UPDATE({menuType,step,item,menuTitle,title}))
 	}
 
 	useEffect(()=>{
+		const firstFilteredIndex = menuData[0].title === history[step-1].menuTitle && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step-1].item)
+		const secondFilteredIndex = menuData[1].title === history[step-1].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step-1].item)
+		const firstIndex = firstFilteredIndex !== -1 && firstFilteredIndex  
+		const secondIndex = secondFilteredIndex !== -1 && secondFilteredIndex
 
-		const firstFilteredIndex = menuData[0].title === history[step-1].title && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step-1].item)
-		const secondFilteredIndex = menuData[1].title === history[step-1].title && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step-1].item && menuData[1].title === history[step-1].title)
-		const firstIndex = firstFilteredIndex !== -1 ? firstFilteredIndex: null 
-		const secondIndex = firstFilteredIndex === -1 ? secondFilteredIndex : null
-
-		// console.log(filteredIndex)
-
-		// setTargetIndex(firstIndex)
-		// setSecondTargetIndex(secondIndex)
-		console.log(firstFilteredIndex)
+		setTargetIndex(firstIndex)
+		setSecondTargetIndex(secondIndex)
 
 	},[history])
 
 	return(
 		<>
-			{/* {(menuData as Array<colorType>).map(item => (
-				<SelectBox key={uuidv4()}>
-					<Title>{item.title}</Title>
-					<SubMenuDiv>
-						{item.subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item)} key={uuidv4()} targetIndex = {idx===targetIndex}>{item}</SubTitle>)}
-					</SubMenuDiv>
-				</SelectBox>
-			))}
-			 */}
 			{
 				<>
 					<SelectBox key={uuidv4()}>
 						<Title>{menuData[0].title}</Title>
 						<SubMenuDiv>
-							{(menuData as colorType[])[0].subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item)} key={uuidv4()} targetIndex = {idx===targetIndex}>{item}</SubTitle>)}
+							{(menuData as colorType[])[0].subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item,menuData[0].title)} key={uuidv4()} targetIndex = {idx===targetIndex}>{item}</SubTitle>)}
 						</SubMenuDiv>
 					</SelectBox>
 
@@ -62,7 +48,7 @@ const Color = () => {
 					<SelectBox key={uuidv4()}>
 					<Title>{menuData[1].title}</Title>
 					<SubMenuDiv>
-						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle2 onClick ={()=>handleClick(item)} key={uuidv4()} targetIndex2 = {idx===secondTargetIndex}>{item}</SubTitle2>)}
+						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle2 onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex2 = {idx===secondTargetIndex}>{item}</SubTitle2>)}
 					</SubMenuDiv>
 					</SelectBox>
 				}
@@ -105,8 +91,7 @@ interface ISubTitle2Props {
 	targetIndex2:boolean
 }
 
-const SubTitle2
- = styled.p<ISubTitle2Props>`
+const SubTitle2 = styled.p<ISubTitle2Props>`
 	font-size:12px;
 	border:${props => props.targetIndex2 ? `5px solid black` : `0.5px solid grey`};
 	height:30px;
