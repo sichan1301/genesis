@@ -12,8 +12,8 @@ import Title from "./selectType/Title"
 const Select = () => {
 	const step = useSelector((state:RootState)=>state.step)
 	const dispatch = useDispatch()
-	const numberFilteredData = data.filter(item => item.number === step)[0]
-	const nextButton = step===10 ? "견적보기": "다음" 
+	const numberFilteredData = data.filter(item => item.number === step+1)[0]
+	const nextButton = step===9 ? "견적보기": "다음" 
 	const dataType = numberFilteredData.menu.type
 
 	const handlePrevClick = () => {
@@ -41,7 +41,7 @@ const Select = () => {
 
 	return(
 		<>
-			<p>{step}.{numberFilteredData.title}</p>
+			<p>{step+1}.{numberFilteredData.title}</p>
 			{filterDataType()}
 			<button onClick = {handlePrevClick}>이전</button>
 			<button onClick = {handleNextClick}>{nextButton}</button>

@@ -14,17 +14,17 @@ const Option = () => {
 	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
 
-	const filteredData = data.filter(item => item.number === step)[0]
+	const filteredData = data.filter(item => item.number === step+1)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
 
 	const handleClick = (item:optionType) => {
-		dispatch(UPDATE({menuType,step,item,title}))
+		dispatch(UPDATE({menuType,step:step+1,item,title}))
 	}
 
 	useEffect(()=>{
-		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step-1].item.title) 
+		const filteredIndex = menuData.findIndex(item=> item.title === (history as IOptionHistory[])[step].item.title) 
 		setTargetIndex(filteredIndex)
 	},[history])
 

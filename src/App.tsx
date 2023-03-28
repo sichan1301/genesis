@@ -9,7 +9,7 @@ function App() {
   const step = useSelector((state:RootState)=>state.step)
   return (
     <>
-      {step <=10 ?  <Select /> : <Result />}
+      {step <=9 ?  <Select /> : <Result />}
     </>
   );
 }

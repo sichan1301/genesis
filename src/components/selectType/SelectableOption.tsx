@@ -24,7 +24,7 @@ const SelectableOption = () => {
 			item.selected = !item.selected
 		}
 		const newItem = {...item}
-		dispatch(UPDATE({menuType,step,newItem,title}))
+		dispatch(UPDATE({menuType,step:step+1,newItem,title}))
 	}
 
 	const handleSelect = () => {

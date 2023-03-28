@@ -12,18 +12,18 @@ const Color = () => {
 	const step = useSelector((state:RootState)=>state.step)
 	const history = useSelector((state:RootState)=>state.history)
 	const dispatch = useDispatch()
-	const filteredData = data.filter(item => item.number === step)[0]
+	const filteredData = data.filter(item => item.number === step+1)[0]
 	const menuData:menuDataType = filteredData.menu.menuData
 	const menuType = filteredData.menu.type
 	const title = filteredData.title
 
 	const handleClick = (item:string,menuTitle:string) => {
-		dispatch(UPDATE({menuType,step,item,menuTitle,title}))
+		dispatch(UPDATE({menuType,step:step+1,item,menuTitle,title}))
 	}
 
 	useEffect(()=>{
-		const firstFilteredIndex = menuData[0].title === history[step-1].menuTitle && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step-1].item)
-		const secondFilteredIndex = menuData[1] && menuData[1].title === history[step-1].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step-1].item)
+		const firstFilteredIndex = menuData[0].title === history[step].menuTitle && (menuData as colorType[])[0].subMenu.findIndex((item:string) => item === history[step].item)
+		const secondFilteredIndex = menuData[1] && menuData[1].title === history[step].menuTitle && (menuData as colorType[])[1].subMenu.findIndex((item:string) => item === history[step].item)
 		const firstIndex = firstFilteredIndex !== -1 && firstFilteredIndex  
 		const secondIndex = secondFilteredIndex !== -1 && secondFilteredIndex
 
