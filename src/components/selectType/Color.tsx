@@ -29,7 +29,6 @@ const Color = () => {
 
 		setTargetIndex(firstIndex)
 		setSecondTargetIndex(secondIndex)
-
 	},[history])
 
 	return(
@@ -48,7 +47,7 @@ const Color = () => {
 					<SelectBox key={uuidv4()}>
 					<Title>{menuData[1].title}</Title>
 					<SubMenuDiv>
-						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle2 onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex = {idx===secondTargetIndex}>{item}</SubTitle2>)}
+						{(menuData as colorType[])[1].subMenu.map((item:string,idx:number) => <SubTitle onClick ={()=>handleClick(item,menuData[1].title)} key={uuidv4()} targetIndex = {idx===secondTargetIndex}>{item}</SubTitle>)}
 					</SubMenuDiv>
 					</SelectBox>
 				}
@@ -77,16 +76,6 @@ interface ISubTitleProps {
 }
 
 const SubTitle = styled.p<ISubTitleProps>`
-	font-size:12px;
-	border:${props => props.targetIndex ? `3px solid black` : `0.5px solid grey`};
-	height:30px;
-	line-height: 30px;
-	padding:5px;
-	margin-right:5px;
-	cursor:pointer;
-`
-
-const SubTitle2 = styled.p<ISubTitleProps>`
 	font-size:12px;
 	border:${props => props.targetIndex ? `3px solid black` : `0.5px solid grey`};
 	height:30px;

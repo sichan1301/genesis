@@ -44,13 +44,13 @@ const genesis = createSlice({
 				const numberFilteredIndex = state.history.findIndex(item => item.step === action.payload.step)
 				state.history.splice(numberFilteredIndex,1,action.payload)
 			}else{
-				if(action.payload?.newItem.selected === true){
+				if(action.payload.newItem.selected === true){
 					if((state.history as ISelectableOptionHistory[])[9]?.newItem.title === ""){
 						state.history.splice(9,1)
 					}
 					state.history.push(action.payload)
 				}else{
-					const filteredIndex =  (state.history as ISelectableOptionHistory[]).findIndex((item:ISelectableOptionHistory) => item?.newItem?.title === action.payload?.newItem?.title) 
+					const filteredIndex =  (state.history as ISelectableOptionHistory[]).findIndex((item:ISelectableOptionHistory) => item?.newItem?.title === action.payload.newItem.title) 
 					state.history.splice(filteredIndex,1)
 				}
 			}
